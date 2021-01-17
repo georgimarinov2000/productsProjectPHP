@@ -39,6 +39,13 @@ class ProductCrudController extends CrudController
                 'entity'    => 'category', // the method that defines the relationship in your Model
                 'model'     => "App\Models\Category", // foreign key model
                 'attribute' => 'name' // foreign key attribute that is shown to user
+            ],
+            [
+                'label' => "Product Image",
+                'name' => "image",
+                'type' => 'image',
+                'crop' => true, // set to true to allow cropping, false to disable
+                'aspect_ratio' => 0, // omit or set to 0 to allow any aspect ratio
             ]
         ];
     }
