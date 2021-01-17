@@ -19,6 +19,16 @@ class CategoryCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private function getFieldsData() {
+        return [
+            [
+                'name' => 'name',
+                'label' => 'Type',
+                'type' => 'text'
+            ]
+        ];
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -29,6 +39,7 @@ class CategoryCrudController extends CrudController
         CRUD::setModel(\App\Models\Category::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
         CRUD::setEntityNameStrings('category', 'categories');
+        $this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -39,7 +50,10 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+      // CRUD::setFromDb(); // columns
+       $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData());
+      
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:

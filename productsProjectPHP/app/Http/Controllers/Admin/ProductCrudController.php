@@ -19,6 +19,30 @@ class ProductCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+    private function getFieldsData($show = FALSE) {
+        return [
+            [
+                'name'=> 'name',
+                'label' => 'Name',
+                'type'=> 'text'
+            ],
+            [
+                'name'=> 'description',
+                'label' => 'Description',
+                'type'=> 'text'
+            ],
+            [  // Select2
+                'label'     => "Category",
+                'type'      => 'select',
+                'name'      => 'category_id', // the db column for the foreign key
+                // optional
+                'entity'    => 'category', // the method that defines the relationship in your Model
+                'model'     => "App\Models\Category", // foreign key model
+                'attribute' => 'name' // foreign key attribute that is shown to user
+            ]
+        ];
+    }
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      * 
@@ -29,6 +53,7 @@ class ProductCrudController extends CrudController
         CRUD::setModel(\App\Models\Product::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/product');
         CRUD::setEntityNameStrings('product', 'products');
+        $this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -39,7 +64,9 @@ class ProductCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // columns
+        // CRUD::setFromDb(); // columns
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -76,5 +103,14 @@ class ProductCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        // by default the Show operation will try to show all columns in the db table,
+        // but we can easily take over, and have full control of what columns are shown,
+        // by changing this config for the Show operation
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
     }
 }

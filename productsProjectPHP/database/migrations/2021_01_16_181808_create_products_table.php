@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description')->unique();
+            $table->integer('category_id')->unsigned();
             $table->timestamps();
         });
     }
