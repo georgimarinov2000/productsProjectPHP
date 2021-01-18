@@ -26,7 +26,9 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => 'required|min:1|max:30|unique:products',
+            'description' => 'required|min:1|max:255|',
+            'category_id' => 'required',
         ];
     }
 
@@ -50,7 +52,10 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required' => 'Please add a unique product.',
+            'name.unique' => 'Product already made.',
+            'description.required' => 'Please add a descritpion to the item.',
+            'category_id.required' => 'Please select a category for the product.'
         ];
     }
 }
