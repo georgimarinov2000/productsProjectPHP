@@ -26,7 +26,9 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+
+            'name' => 'required|min:1|max:30|unique:categories',
+            
         ];
     }
 
@@ -50,7 +52,8 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            'name.required' => 'Please add a unique product type.',
+            'name.unique' => 'Product type already made.'
         ];
     }
 }
