@@ -52,8 +52,8 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Please add a unique product type.',
-            'name.unique' => 'Product type already made.'
+            'name.required' => 'Please add a unique category type.',
+            'name.unique' => 'Category type already made.'
         ];
     }
 }
