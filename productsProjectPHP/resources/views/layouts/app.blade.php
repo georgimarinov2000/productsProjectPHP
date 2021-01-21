@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Elemental by TEMPLATED</title>
+		<title>Store</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -30,7 +30,7 @@
 					
 				<!-- Logo -->
 					<div id="logo">
-						<h1><a href="#">Elemental</a></h1>
+						<h1><a href="#">Store</a></h1>
 					</div>
 			</div>
 			<div id="nav-wrapper" class="container">
@@ -38,14 +38,11 @@
 					<nav id="nav">
 						<ul>
 							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="left-sidebar.html">Left Sidebar</a></li>
-							<li><a href="right-sidebar.html">Right Sidebar</a></li>
-							<li><a href="no-sidebar.html">No Sidebar</a></li>
 						</ul>
 					</nav>
 			</div>
 			<div class="container">
-				<div id="banner"><a href="#" class="image featured"><img src="images/pics11.jpg" alt=""></a></div>
+				<div id="banner"><a href="#" class="image featured"><img src="images/pics11.jpg" width="100px" height="500" alt=""></a></div>
 			</div>
 		</div>
 	<!-- Header -->
