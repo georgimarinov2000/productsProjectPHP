@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,10 +20,19 @@ class IndexController extends Controller
 
     public function search(Request $request) {
         $searchQuery = $request->get('searchTextInput');
-        $searchResult = Product::with('category')->where('name', 'LIKE',
+        $searchOption = $request->get('searchOption');
+        if ($searchOption == 'category') {
+            $searchResult = Product::with('category')->whereHas('category', function ($query) use ($searchQuery) {
+                $query->where('name', 
+                'LIKE', '%'.$searchQuery.'%');
+            })->get();
+          }
+          else {
+            $searchResult = Product::with('category')->where('name', 'LIKE',
             '%'.$searchQuery.'%')->get();
+          };
         return view('index.search', [
-            'products' => $searchResult
+        'products' => $searchResult
         ]);
-    }
+        }
 }

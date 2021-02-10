@@ -12,6 +12,10 @@
 			<div class="4u">
 				<section>
 				<form action="/search" method="get">
+				<select name="searchOption" id="searchOption">
+                        <option value="product">Product</option>
+                        <option value="category">Category</option>
+                    </select>
 				<input type="text" id="searchTextInput"  name="searchTextInput" style="float: right" placeholder="Search here..." />
 				<input type="submit" id="submitSearch"/>
 				</form>
